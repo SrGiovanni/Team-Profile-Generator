@@ -6,3 +6,15 @@ test('create an engineer object', () =>{
 
     expect(engineer.github).toBe('RUStillThere');
 });
+
+test('check Engineer getGithub', () =>{
+    const engineer = new Engineer("Hank", '123', 'turret@engi.org', 'RUStillThere');
+
+    expect(engineer.getGithub()).toBe('RUStillThere');
+});
+
+test('check Engineer role', () =>{
+    const engineer = new Engineer("Hank", '123', 'turret@engi.org', 'RUStillThere');
+
+    expect(engineer.getRole()).toBe('Engineer');
+});
