@@ -3,7 +3,7 @@
 /**
  * called from outside the file to format the HTML to be written to the file.
  */
-let formatHTML = (data) => {
+const formatHTML = (data) => {
   return `
   <!DOCTYPE html>
   <html lang="en">

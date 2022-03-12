@@ -1,7 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const formatHTML = require('./scr/site-template');
-const { writeFile } = require('fs');
+const { prompt } = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const console = require('console');
 /**
  * main file to run to generate the profile
  * runs init to start the process.
@@ -16,54 +20,70 @@ let data = {
  * Prompts the User for engineer info, then pushes a new Engineer object to data
  */
 let promptEngineer = (data) => {
-    inquirer([
-        {
-            type: 'input',
-            name: 'name',
-            message: `Please enter Engineer's name:`,
-            default: 'Tim',
-            validate: nameInput =>{
-                if(nameInput){
-                    return true;
-                } else{
-                    console.log(`Please enter the Engineer's name!`);
-                    return false;
+    console.log('You will be prompted to enter Engineer info.');
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: `Please enter Engineer's name:`,
+                default: 'Hank',
+                validate: nameInput =>{
+                    if(nameInput){
+                        return true;
+                    } else{
+                        console.log(`Please enter the Engineer's name!`);
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'empID',
+                message: `Please enter the Engineer's ID`,
+                default: '3333',
+                validate: idInput =>{
+                    if(idInput){
+                        return true;
+                    } else{
+                        console.log(`Please enter the Engineer's ID!`);
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: `Please enter Employee's email`,
+                default: 'borntorun@fakemail.com',
+                validate: emailInput => {
+                    if(emailInput){
+                        return true;
+                    } else{
+                        console.log("Please enter the Employee's email!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: `Please enter the Engineer's Github profile:`,
+                default: 'RUStillThere',
+                validate: officeInput => {
+                    if(officeInput){
+                        return true;
+                    } else{
+                        console.log("Please enter the Engineer's github!");
+                        return false;
+                    }
                 }
             }
-        },
-        {
-            type: 'input',
-            name: 'empID',
-            message: `Please enter the Engineer's ID`,
-            default: '3333',
-            validate: idInput =>{
-                if(idInput){
-                    return true;
-                } else{
-                    console.log(`Please enter the Engineer's ID!`);
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'github',
-            message: `Please enter the Engineer's Github profile:`,
-            default: 'RUStillThere',
-            validate: officeInput => {
-                if(officeInput){
-                    return true;
-                } else{
-                    console.log("Please enter the Engineer's github!");
-                    return false;
-                }
-            }
-        }
-    ]).then(answers => {
-        data.engineers.push(new Engineer(answers.name, answers.empID, answers.email, answers.github));
-        return data;
-    })
-    .then(addEmployeeChoice);
+        ]).then(answers => {
+            data.engineers.push(new Engineer(answers.name, answers.empID, answers.email, answers.github));
+            return data;
+        })
+        .then(addEmployeeChoice);
 };
 
 /**
@@ -71,54 +91,69 @@ let promptEngineer = (data) => {
  */
 let promptIntern = (data) => {
     console.log("Please enter Intern information:");
-    inquirer([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'Please enter Intern name:',
-            default: 'Sasha',
-            validate: nameInput =>{
-                if(nameInput){
-                    return true;
-                } else{
-                    console.log(`Please enter the Intern's name!`);
-                    return false;
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Please enter Intern name:',
+                default: 'Sasha',
+                validate: nameInput =>{
+                    if(nameInput){
+                        return true;
+                    } else{
+                        console.log(`Please enter the Intern's name!`);
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'empID',
+                message: "Please enter the Intern's ID",
+                default: '54321',
+                validate: idInput =>{
+                    if(idInput){
+                        return true;
+                    } else{
+                        console.log("Please enter the Intern's ID!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: `Please enter Employee's email`,
+                default: 'VBC@ad.nais.edu',
+                validate: emailInput => {
+                    if(emailInput){
+                        return true;
+                    } else{
+                        console.log("Please enter the Employee's email!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: `Please enter the Intern's school:`,
+                default: 'New Avalon Institute of Science',
+                validate: officeInput => {
+                    if(officeInput){
+                        return true;
+                    } else{
+                        console.log("Please enter the Intern's office!");
+                        return false;
+                    }
                 }
             }
-        },
-        {
-            type: 'input',
-            name: 'empID',
-            message: "Please enter the Intern's ID",
-            default: '54321',
-            validate: idInput =>{
-                if(idInput){
-                    return true;
-                } else{
-                    console.log("Please enter the Intern's ID!");
-                    return false;
-                }
-            }
-        },
-        {
-            type: 'input',
-            name: 'school',
-            message: `Please enter the Intern's school:`,
-            default: 'New Avalon Institute of Science',
-            validate: officeInput => {
-                if(officeInput){
-                    return true;
-                } else{
-                    console.log("Please enter the Intern's office!");
-                    return false;
-                }
-            }
-        }
-    ]).then(answers => {
-        data.interns.push(new Intern(answers.name, answers.empID, answers.email, answers.school));
-        return data;
-    })
-    .then(addEmployeeChoice);
+        ]).then(answers => {
+            data.interns.push(new Intern(answers.name, answers.empID, answers.email, answers.school));
+            return data;
+        })
+        .then(addEmployeeChoice);
 };
 
 /**
@@ -126,29 +161,30 @@ let promptIntern = (data) => {
  * if quit, return the data object, else invoke the appropriate prompt function
  */
 let addEmployeeChoice = (data) => {
-    inquirer([
+    return inquirer
+        .prompt([
         {
             type: 'list',
             name: 'choice',
             message: 'You may select what type of employee to add, or quit and build the site.',
             choices: ['Quit and build', 'Add an Engineer', 'Add an Intern']
         }
-    ]).then((choice) => {
-        switch (choice) {
+    ]).then((answer) => {
+        switch (answer.choice) {
             case 'Quit and build':
                 return data;
                 break;
             case 'Add an Engineer':
-                promptEngineer(data);
+                return promptEngineer(data);
                 break;
             case 'Add an Intern':
-                promptIntern(data);
+                return promptIntern(data);
                 break;
             default:
                 break;
-        }
+        };
       
-    })
+    });
   
 };
 
@@ -164,7 +200,15 @@ let init = () => {
     Welcome to the Profile Generator
     --------------------------------`);
     console.log('Please enter Manager information');
-    return inquirer([
+    if(!data){
+        let data  = {
+            managers: [],
+            engineers: [],
+            interns: []
+        };
+    }
+    return inquirer
+        .prompt([
         {
             type: 'input',
             name: 'name',
@@ -195,6 +239,20 @@ let init = () => {
         },
         {
             type: 'input',
+            name: 'email',
+            message: `Please enter Employee's email`,
+            default: 'hasMugWT@fakemai.com',
+            validate: emailInput => {
+                if(emailInput){
+                    return true;
+                } else{
+                    console.log("Please enter the Employee's email!");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
             name: 'office',
             message: 'Please enter the manager office number:',
             default: '343',
@@ -207,20 +265,21 @@ let init = () => {
                 }
             }
         }
-    ]).then(answers => {
-        data.managers.push(new Manager(answers.name, answers.empID, answers.email, answers.office));
-        return data;
-    });
+        ])
+        .then(answers => {
+            data.managers.push(new Manager(answers.name, answers.empID, answers.email, answers.office));
+            return data;
+        });
 };
 // Run the app
 init()
-    .then(data =>{
-        return addEmployeeChoice(data)})
+    .then(addEmployeeChoice)
     .then(data => {
+        console.log(data);
         return formatHTML(data);
     })
     .then(pageHTML => {
-        return writeFile(pageHTML);
+        return writeIndexFile(pageHTML);
     }).then(writeFileResponse=>{
         console.log(writeFileResponse);
         return fs.copyFile();

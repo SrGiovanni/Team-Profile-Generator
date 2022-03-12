@@ -1,7 +1,7 @@
 /**
  * Write file function to dist folder
  */
- const writeFile = fileContent => {
+ const writeIndexFile = fileContent => {
     return new Promise((resolve, reject) => {
         fs.writeFile('../dist/index.html', fileContent, err => {
             // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
