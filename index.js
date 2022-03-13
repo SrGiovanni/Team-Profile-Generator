@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const formatHTML = require('./scr/site-template');
+const {writeIndexFile, copyCSSFile} =require('./scr/create-site');
 const { prompt } = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -275,16 +276,17 @@ let init = () => {
 init()
     .then(addEmployeeChoice)
     .then(data => {
-        console.log(data);
+        //console.log(data);
         return formatHTML(data);
     })
     .then(pageHTML => {
         return writeIndexFile(pageHTML);
     }).then(writeFileResponse=>{
-        console.log(writeFileResponse);
-        return fs.copyFile();
+        console.log(writeFileResponse.message);
+        return copyCSSFile();
     }).then(copyFileResponse =>{
-        console.log(copyFileResponse);
+        console.log(copyFileResponse.message);
+        console.log(`Congratulations! Your profile is ready in the "dist" folder of this directory.`)
     }).catch((err) => {
       console.log(err);
     });

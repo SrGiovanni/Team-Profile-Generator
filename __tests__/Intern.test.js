@@ -7,9 +7,10 @@ test('create intern object', () =>{
     expect(intern.school).toBe('University of Science');
 });
 
-test('check getSchool', () =>{
+test('check Intern getSchool', () =>{
     const intern = new Intern('Kevin', '556', 'kev@uofs.edu', 'University of Science');
 
+    expect(intern.getSchool()).toBe('University of Science');
 });
 
 test('check role', () =>{
