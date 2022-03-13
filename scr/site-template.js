@@ -11,7 +11,7 @@ const createCard = employee => {
       custom = `<strong>Office Number:</strong> ${employee.getOfficeNumber()}`;
       break;
     case 'Engineer':
-      custom = `<strong>Github:</strong> <a href="${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`;
+      custom = `<strong>Github:</strong> <a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>`;
       break;
     case 'Intern':
       custom = `<strong>School:</strong> ${employee.getSchool()}`;
