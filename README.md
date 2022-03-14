@@ -27,7 +27,7 @@ Build an awesome team profile using this app, advertise yourself and your team!
 
 After downloading app and installing dependencies, run `node index.js` in your terminal.
 
-![Walkthrough Video]()
+![Walkthrough Video](./assets/video/TeamProfileGenerator.mp4)
 
 ## License
 
