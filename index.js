@@ -28,7 +28,6 @@ let promptEngineer = (data) => {
                 type: 'input',
                 name: 'name',
                 message: `Please enter Engineer's name:`,
-                default: 'Hank',
                 validate: nameInput =>{
                     if(nameInput){
                         return true;
@@ -42,7 +41,6 @@ let promptEngineer = (data) => {
                 type: 'input',
                 name: 'empID',
                 message: `Please enter the Engineer's ID`,
-                default: '3333',
                 validate: idInput =>{
                     if(idInput){
                         return true;
@@ -56,7 +54,6 @@ let promptEngineer = (data) => {
                 type: 'input',
                 name: 'email',
                 message: `Please enter Employee's email`,
-                default: 'borntorun@fakemail.com',
                 validate: emailInput => {
                     if(emailInput){
                         return true;
@@ -70,7 +67,6 @@ let promptEngineer = (data) => {
                 type: 'input',
                 name: 'github',
                 message: `Please enter the Engineer's Github profile:`,
-                default: 'RUStillThere',
                 validate: officeInput => {
                     if(officeInput){
                         return true;
@@ -98,7 +94,6 @@ let promptIntern = (data) => {
                 type: 'input',
                 name: 'name',
                 message: 'Please enter Intern name:',
-                default: 'Sasha',
                 validate: nameInput =>{
                     if(nameInput){
                         return true;
@@ -112,7 +107,6 @@ let promptIntern = (data) => {
                 type: 'input',
                 name: 'empID',
                 message: "Please enter the Intern's ID",
-                default: '54321',
                 validate: idInput =>{
                     if(idInput){
                         return true;
@@ -126,7 +120,6 @@ let promptIntern = (data) => {
                 type: 'input',
                 name: 'email',
                 message: `Please enter Employee's email`,
-                default: 'VBC@ad.nais.edu',
                 validate: emailInput => {
                     if(emailInput){
                         return true;
@@ -140,7 +133,6 @@ let promptIntern = (data) => {
                 type: 'input',
                 name: 'school',
                 message: `Please enter the Intern's school:`,
-                default: 'New Avalon Institute of Science',
                 validate: officeInput => {
                     if(officeInput){
                         return true;
@@ -214,7 +206,6 @@ let init = () => {
             type: 'input',
             name: 'name',
             message: 'Please enter Manager name:',
-            default: 'Tim',
             validate: nameInput =>{
                 if(nameInput){
                     return true;
@@ -228,7 +219,6 @@ let init = () => {
             type: 'input',
             name: 'empID',
             message: "Please enter the Manager's ID",
-            default: '12345',
             validate: idInput =>{
                 if(idInput){
                     return true;
@@ -242,7 +232,6 @@ let init = () => {
             type: 'input',
             name: 'email',
             message: `Please enter Employee's email`,
-            default: 'hasMugWT@fakemai.com',
             validate: emailInput => {
                 if(emailInput){
                     return true;
@@ -256,7 +245,6 @@ let init = () => {
             type: 'input',
             name: 'office',
             message: 'Please enter the manager office number:',
-            default: '343',
             validate: officeInput => {
                 if(officeInput){
                     return true;
